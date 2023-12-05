@@ -14,12 +14,15 @@ pub enum Offer {
     S2,
     /// Legacy throughput level 3
     S3,
+    /// Autoscale upto the specified max RU/s
+    AutoScale(u64),
 }
 
 impl Header for Offer {
     fn name(&self) -> azure_core::headers::HeaderName {
         match self {
             Offer::Throughput(_) => headers::HEADER_OFFER_THROUGHPUT,
+            Offer::AutoScale(_) => headers::HEADER_OFFER_AUTOPILOT_SETTINGS,
             _ => headers::HEADER_OFFER_TYPE,
         }
     }
@@ -27,6 +30,9 @@ impl Header for Offer {
     fn value(&self) -> azure_core::headers::HeaderValue {
         match self {
             Offer::Throughput(throughput) => throughput.to_string(),
+            Offer::AutoScale(throughput) => {
+                serde_json::json!({ "maxThroughput": throughput }).to_string()
+            }
             Offer::S1 => "S1".to_owned(),
             Offer::S2 => "S2".to_owned(),
             Offer::S3 => "S3".to_owned(),

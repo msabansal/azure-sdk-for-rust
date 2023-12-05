@@ -21,6 +21,8 @@ pub(crate) const HEADER_NUMBER_OF_READ_REGIONS: HeaderName =
 pub(crate) const HEADER_REQUEST_CHARGE: HeaderName = HeaderName::from_static("x-ms-request-charge");
 pub(crate) const HEADER_OFFER_THROUGHPUT: HeaderName =
     HeaderName::from_static("x-ms-offer-throughput");
+pub(crate) const HEADER_OFFER_AUTOPILOT_SETTINGS: HeaderName =
+    HeaderName::from_static("x-ms-cosmos-offer-autopilot-settings");
 pub(crate) const HEADER_OFFER_TYPE: HeaderName = HeaderName::from_static("x-ms-offer-type");
 #[allow(dead_code)]
 pub(crate) const HEADER_DOCUMENTDB_ISQUERY: HeaderName =
